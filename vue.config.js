@@ -18,3 +18,8 @@ export default defineConfig({
   base: '/cba-asociados/', // El nombre exacto de tu repositorio en GitHub
   plugins: [vue()],
 })
+module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/cba-asociados/'
+    : '/'
+}
