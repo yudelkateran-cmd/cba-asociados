@@ -32,12 +32,26 @@
                     <p>© 2026 <strong>CBA & Asociados</strong>.</p>
                 </div>
                 <div class="col-md-5 col-lg-4">
-                    <div class="text-center text-md-end">
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 btn-sm" role="button"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 btn-sm" role="button"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-floating m-1 btn-sm" role="button"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
+    <div class="text-center text-md-end">
+        <a href="#" class="btn btn-outline-light btn-floating m-1 btn-sm" role="button">
+            <i class="bi bi-facebook"></i>
+        </a>
+
+        <a href="https://www.instagram.com/cesaraugusto0007" 
+           target="_blank" 
+           class="btn btn-outline-light btn-floating m-1 btn-sm instagram-hover" 
+           role="button">
+            <i class="bi bi-instagram"></i>
+        </a>
+
+        <a href="https://wa.me/584149249522?text=Hola,%20me%20gustaría%20solicitar%20una%20cotización." 
+           target="_blank" 
+           class="btn btn-outline-light btn-floating m-1 btn-sm whatsapp-hover" 
+           role="button">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+    </div>
+</div>
             </div>
         </div>
     </footer>
