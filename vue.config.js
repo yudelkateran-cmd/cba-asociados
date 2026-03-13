@@ -13,3 +13,8 @@ module.exports = defineConfig({
     },
   },
 })
+// vite.config.js
+export default defineConfig({
+  base: '/cba-asociados/', // El nombre exacto de tu repositorio en GitHub
+  plugins: [vue()],
+})
