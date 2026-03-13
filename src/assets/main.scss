@@ -1,0 +1,48 @@
+// Variables (asegúrate de tenerlas definidas arriba o en un archivo _variables.scss)
+:root {
+  --cba-blue: #4facfe;
+  --cba-dark: #0f2027;
+}
+
+.services-grid {
+  background-color: #f8f9fa;
+  padding: 120px 0; // Agregué el padding para que respire la sección
+}
+
+.service-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 3px solid transparent !important;
+  background-color: #ffffff;
+  
+  // Estilos del título dentro de la tarjeta
+  h4 {
+    color: var(--cba-dark);
+    margin-top: 1rem;
+    font-weight: 700;
+  }
+
+  // Estilos del contenedor del icono
+  .icon-box {
+    width: 50px;
+    height: 50px;
+    background-color: var(--cba-dark);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  // Efectos al pasar el mouse (Hover)
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 3px solid var(--cba-blue) !important;
+
+    .icon-box {
+      background-color: var(--cba-blue);
+    }
+  }
+}
