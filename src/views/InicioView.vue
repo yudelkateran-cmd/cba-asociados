@@ -156,7 +156,7 @@ export default {
 </script>
 
 <style scoped>
-/* Aquí puedes pegar los estilos de main.scss que correspondan solo a esta página */
+/* Aquí  pegar los estilos de main.scss que correspondan solo a esta página */
 .h-v-80 { height: 80vh; object-fit: cover; }
 .glass-caption {
   background: rgba(255, 255, 255, 0.1);

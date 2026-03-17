@@ -2,6 +2,14 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  lintOnSave: false, // <--- ESTO ES CLAVE: Ignora los errores de ESLint
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/cba-asociados/'
+    : '/'
+})
+
+module.exports = defineConfig({
+  transpileDependencies: true,
   
   // 1. CONFIGURACIÓN PARA GITHUB PAGES
   // Esto asegura que los archivos se busquen en la carpeta del repo

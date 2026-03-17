@@ -55,3 +55,13 @@
     background-color: #25D366 !important;
     border-color: #25D366 !important;
 }
+/* Esto fuerza a que el menú se vea siempre al frente */
+.dropdown-menu {
+  display: none; /* Bootstrap lo cambia a block al abrir */
+  position: absolute;
+  z-index: 9999 !important;
+}
+
+.dropdown-menu.show {
+  display: block;
+}

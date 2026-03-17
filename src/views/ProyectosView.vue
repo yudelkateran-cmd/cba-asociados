@@ -18,7 +18,7 @@
             <div class="carousel-inner rounded-4 overflow-hidden"> 
                 <div class="carousel-item active">
                     <a href="#">
-                        <img src="@/assets/image/buque.jpg" class="d-block w-100 h-project" alt="Proyecto Naval">
+                        <img :src="require('@/assets/image/buque.jpg')" class="d-block w-100 h-project" alt="Proyecto Naval">
                         <div class="carousel-caption glass-caption">
                             <h5 class="display-title text-white">Proyecto de Containers</h5>
                             <p class="subtitle text-white">Ficha técnica y logística portuaria.</p>
@@ -28,16 +28,14 @@
 
                 <div class="carousel-item">
                     <a href="#">
-                        <img src="@/assets/image/paraiso.png" class="d-block w-100 h-project" alt="Hotel Paraíso">
+                        <img :src="require('@/assets/image/paraiso.png')" class="d-block w-100 h-project" alt="Hotel Paraíso">
                         <div class="carousel-caption glass-caption">
                             <h5 class="display-title text-white">Urbanismo Hotel Paraíso</h5>
                             <p class="subtitle text-white">Cálculo estructural y desarrollo urbano.</p>
                         </div>
                     </a>
                 </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+            </div> <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
@@ -49,26 +47,14 @@
 </template>
 
 <script>
-// Importamos el JS de Bootstrap para que el carrusel se mueva
-import { Carousel } from 'bootstrap'
-
+// No necesitas importar Bootstrap aquí porque ya está en main.js
 export default {
-  name: 'ProyectosView',
-  mounted() {
-    // Esto asegura que el carrusel arranque apenas entras a la página
-    const el = document.querySelector('#projectCarousel')
-    if (el) {
-        new Carousel(el, {
-            interval: 3000,
-            ride: 'carousel'
-        })
-    }
-  }
+  name: 'ProyectosView'
 }
 </script>
 
 <style scoped>
-/* Tu estilo está muy bien, solo asegúrate de que las clases existan */
+/* Tu CSS está perfecto y no requiere cambios */
 .proyectos-page {
     background-color: #f8f9fa;
     min-height: 100vh;
@@ -83,7 +69,7 @@ export default {
 }
 
 .project-carousel-container {
-    margin-top: -60px; /* Sube el carrusel para el efecto visual */
+    margin-top: -60px;
     max-width: 1000px;
     position: relative;
     z-index: 10;
