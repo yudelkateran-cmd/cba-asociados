@@ -20,7 +20,7 @@
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-2 fw-bold text-primary">Contacto</h5>
                     <p class="mb-1"><i class="bi bi-house-door-fill me-3"></i> Valencia, Venezuela</p>
-                    <p class="mb-1"><i class="bi bi-envelope-fill me-3"></i> cesaraugusto5000@gmail.com</p>
+                    <p class="mb-1"><i class="bi bi-envelope-fill me-3"></i> cesaraugusto6000@gmail.com</p>
                     <p class="mb-1"><i class="bi bi-telephone-fill me-3"></i> +58 414 9249522</p>
                 </div>
             </div>

@@ -1,28 +1,23 @@
+// vue.config.js
 const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
-  lintOnSave: false, // <--- ESTO ES CLAVE: Ignora los errores de ESLint
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/cba-asociados/'
-    : '/'
-})
-
-module.exports = defineConfig({
-  transpileDependencies: true,
   
-  // 1. CONFIGURACIÓN PARA GITHUB PAGES
-  // Esto asegura que los archivos se busquen en la carpeta del repo
+  // 1. Ignora los errores de ESLint para que te deje compilar
+  lintOnSave: false,
+
+  // 2. CONFIGURACIÓN PARA GITHUB PAGES
   publicPath: process.env.NODE_ENV === 'production'
     ? '/cba-asociados/'
     : '/',
 
-  // 2. CONFIGURACIÓN DE CSS/SASS
+  // 3. CONFIGURACIÓN DE CSS/SASS
   css: {
     loaderOptions: {
       sass: {
         sassOptions: {
-          // Esto silencia las advertencias de deprecación (muy útil)
+          // Silencia advertencias de versiones viejas de Sass
           quietDeps: true, 
         },
       },

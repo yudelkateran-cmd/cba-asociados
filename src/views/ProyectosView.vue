@@ -1,60 +1,118 @@
 <template>
   <div class="proyectos-page">
     <header class="project-header text-center">
-        <div class="container">
-            <span class="cta-tagline">Nuestra Trayectoria</span>
-            <h1 class="display-4 cta-title text-white">Obras Destacadas</h1>
-            <p class="subtitle text-white-50">Seleccione un proyecto para visualizar detalles técnicos.</p>
-        </div>
+      <div class="container">
+        <span class="cta-tagline">Nuestra Trayectoria</span>
+        <h1 class="display-4 cta-title text-white">
+          {{ $route.query.filtro ? 'Especialidad: ' + formatText($route.query.filtro) : 'Obras Destacadas' }}
+        </h1>
+        <p class="subtitle text-white-50">Resultados técnicos de CBA & ASOCIADOS.</p>
+      </div>
     </header>
 
     <div class="container mb-5 project-carousel-container">
-        <div id="projectCarousel" class="carousel slide shadow-premium" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1"></button>
-            </div>
-            
-            <div class="carousel-inner rounded-4 overflow-hidden"> 
-                <div class="carousel-item active">
-                    <a href="#">
-                        <img :src="require('@/assets/image/buque.jpg')" class="d-block w-100 h-project" alt="Proyecto Naval">
-                        <div class="carousel-caption glass-caption">
-                            <h5 class="display-title text-white">Proyecto de Containers</h5>
-                            <p class="subtitle text-white">Ficha técnica y logística portuaria.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="carousel-item">
-                    <a href="#">
-                        <img :src="require('@/assets/image/paraiso.png')" class="d-block w-100 h-project" alt="Hotel Paraíso">
-                        <div class="carousel-caption glass-caption">
-                            <h5 class="display-title text-white">Urbanismo Hotel Paraíso</h5>
-                            <p class="subtitle text-white">Cálculo estructural y desarrollo urbano.</p>
-                        </div>
-                    </a>
-                </div>
-            </div> <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+      <div 
+        v-if="proyectosFiltrados.length > 0" 
+        :key="$route.query.filtro || 'todos'" 
+        id="projectCarousel" 
+        class="carousel slide shadow-premium" 
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner rounded-4 overflow-hidden"> 
+          <div 
+            v-for="(proyecto, index) in proyectosFiltrados" 
+            :key="proyecto.id"
+            :class="['carousel-item', { active: index === 0 }]"
+          >
+            <a href="#">
+              <img :src="getImgUrl(proyecto.imagen)" class="d-block w-100 h-project" :alt="proyecto.titulo">
+              <div class="carousel-caption glass-caption">
+                <h5 class="display-title text-white">{{ proyecto.titulo }}</h5>
+                <p class="subtitle text-white">{{ proyecto.subtitulo }}</p>
+              </div>
+            </a>
+          </div>
         </div>
+
+        <button v-if="proyectosFiltrados.length > 1" class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button v-if="proyectosFiltrados.length > 1" class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+
+      <div v-else class="text-center p-5 bg-white rounded-4 shadow-sm border">
+        <h3 class="text-dark">Próximamente</h3>
+        <p class="text-muted">Estamos preparando la ficha técnica de nuestros trabajos en esta área de <strong>{{ $route.query.filtro }}</strong>.</p>
+        <router-link to="/proyectos" class="btn btn-outline-primary mt-3">Ver todos los proyectos</router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// No necesitas importar Bootstrap aquí porque ya está en main.js
 export default {
-  name: 'ProyectosView'
+  name: 'ProyectosView',
+  data() {
+    return {
+      // IMPORTANTE: categorías en minúsculas para coincidir con el Header
+      todosLosProyectos: [
+        {
+          id: 1,
+          titulo: 'Cálculo Estructural - Edificio Empire',
+          subtitulo: 'Análisis sísmico y diseño estructural completo.',
+          imagen: 'empire.png', 
+          categoria: 'urbanismo' 
+        },
+        {
+          id: 2,
+          titulo: 'Urbanismo Hotel Paraíso',
+          subtitulo: 'Cálculo estructural y desarrollo urbano.',
+          imagen: 'hotelparaiso.jpeg',
+          categoria: 'calculo'
+        },
+        {
+          id: 3,
+          titulo: 'Galpón Industrial',
+          subtitulo: 'Cálculo estructural y desarrollo urbano.',
+          imagen: 'galpon.png',
+          categoria: 'locales'
+        },
+      ]
+    }
+  },
+  computed: {
+    proyectosFiltrados() {
+      const filtro = this.$route.query.filtro;
+      if (!filtro) return this.todosLosProyectos;
+      
+      // Comparamos siempre en minúsculas para evitar errores
+      return this.todosLosProyectos.filter(p => 
+        p.categoria.toLowerCase() === filtro.toLowerCase()
+      );
+    }
+  },
+  methods: {
+    getImgUrl(pic) {
+      try {
+        // Webpack necesita una parte de la ruta estática para funcionar con require
+        return require(`@/assets/image/${pic}`);
+      } catch (e) {
+        console.error("Error cargando imagen:", pic, e);
+        // Imagen de respaldo por si el archivo no existe
+        return 'https://via.placeholder.com/1000x550?text=Imagen+No+Encontrada';
+      }
+    },
+    formatText(text) {
+      if (!text) return '';
+      return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+  }
 }
 </script>
 
 <style scoped>
-/* Tu CSS está perfecto y no requiere cambios */
 .proyectos-page {
     background-color: #f8f9fa;
     min-height: 100vh;
@@ -86,5 +144,9 @@ export default {
     border-radius: 15px;
     margin: 0 20px 20px;
     padding: 20px;
+}
+
+.shadow-premium {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 </style>
